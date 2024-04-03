@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <section>
+        <div class="featured-area pt-100 pb-70">
+            <div class="container">
+                <div class="tab featured-tab-area">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-8">
+                            <ul class="tabs active">
+                                <li style="margin-bottom: 3px" class="">
+                                    <a href="{% url 'product_page' %}">
+                                        All
+                                    </a>
+                                </li>
+                                {% for category in categories %}
+                                    <li style="margin-bottom: 3px" class="">
+                                        <a href="{% url 'category-product-page' category.name %}">
+                                            {{ category.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab_content current active pt-45">
+
+                        <div class="tabs_item current">
+                            <div class="row justify-content-center">
+                                {% for product in products %}
+                                    <div class="col-lg-3 col-md-6">
+                                        <div class="featured-item">
+                                            <div class="featured-item-img">
+                                                <a href="#">
+                                                    <img src="{{ product.product_image.url }}" alt="Images">
+                                                </a>
+                                            </div>
+                                            <div class="content">
+                                                <h3><a href="#">{{ product.title }}</a></h3>
+                                                <hr>
+                                                <div class="content-in">
+                                                    <h4>{{ product.price }} $</h4>
+                                                    <span><b>Amount: {{ product.amount }}</b></span>
+                                                </div>
+                                                <div class="content-in">
+                                                    <h6>{{ product.description }} </h6><br>
+                                                </div>
+                                                <hr>
+                                                <div class="featured-content-list">
+                                                    {% if request.user.is_superuser %}
+                                                        <a href="{% url 'edit-product' product.id %}">
+                                                            <button type="button" data-name="T-shirt" data-price="700"
+                                                                    class="default-btn border-radius-5">Edit
+                                                            </button>
+                                                        </a>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+
+        .form {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            width: 70vw;
+            margin-left: 15vw;
+        }
+
+        .form label {
+            color: #625d5d;
+            display: block;
+            font-family: sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.5vw;
+        }
+
+        body {
+            margin-bottom: 50px;
+            background: violet;
+        }
+
+        .form h1 {
+            text-align: center;
+            color: #3f0891;
+            font-family: "Digital-7 Mono", monospace;
+            margin-bottom: 2vw;
+        }
+
+        .form input, select {
+            outline: teal;
+            width: 100%;
+            height: 2.2vw;
+            border-radius: 5px;
+            margin-bottom: 0.7vw;
+            border: none;
+            padding-left: 1vw;
+            color: black;
+            background-color: khaki;
+        }
+
+        .form textarea {
+            background-color: khaki;
+            outline: teal;
+            width: 100%;
+            height: 3.3vw;
+            border-radius: 5px;
+            margin-bottom: 0.7vw;
+            border: none;
+            padding: 1vw;
+        }
+
+
+        .form p {
+            font-family: sans-serif;
+            color: #9c9191;
+            margin-top: 1vw;
+        }
+
+        .form button {
+            width: 160px;
+            height: 50px;
+            text-align: center;
+            margin-left: 28vw;
+            border: none;
+            border-radius: 5px;
+            background-color: teal;
+            color: white;
+        }
+
+        .form button:hover {
+            background: white;
+            color: teal;
+            transition: 0.4s all ease-in-out;
+        }
+    </style>
+
+
+    <form class="form" style="margin-top: 5vw" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+        <h1>Product edit</h1>
+
+        {{ edit_product_form.as_p }}
+        <button type="submit" class="btn btn-success">Edit</button>
+    </form>
+
+
+
+
+{% endblock content %}

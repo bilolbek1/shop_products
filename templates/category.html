@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <section>
+        <div class="featured-area pt-100 pb-70">
+            <div class="container">
+                <div class="tab featured-tab-area">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-8">
+                            <ul class="tabs active">
+                                {% if request.user.is_superuser %}
+                                    <li style="margin-bottom: 3px;" class="">
+                                        <a style=" background-color: #6f00fe; color: white"
+                                           href="{% url 'add-category' %}">
+                                            Add category
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                <li style="margin-bottom: 3px" class="">
+                                    <a href="{% url 'product_page' %}">
+                                        All
+                                    </a>
+                                </li>
+                                {% for category in categories %}
+                                    <li style="margin-bottom: 3px" class="">
+                                        <a href="{% url 'category-product-page' category.name %}">
+                                            {{ category.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+
+
+{% endblock content %}
